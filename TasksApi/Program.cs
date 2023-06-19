@@ -9,7 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<UsersAPIDbContext>(options => options.UseInMemoryDatabase("UsersDb")); 
+//builder.Services.AddDbContext<UsersAPIDbContext>(options => options.UseInMemoryDatabase("UsersDb"));
+builder.Services.AddDbContext<UsersAPIDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("TasksApiConnectionsString")));
 
 var app = builder.Build();
 
